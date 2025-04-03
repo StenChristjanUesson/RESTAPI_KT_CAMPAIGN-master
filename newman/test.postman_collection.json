@@ -1,0 +1,2948 @@
+{
+	"info": {
+		"_postman_id": "54d9fa50-3228-492f-93c1-c934c344b6a5",
+		"name": "Kontrolltöö Campaign",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9319536"
+	},
+	"item": [
+		{
+			"name": "1 - CRUD",
+			"item": [
+				{
+					"name": "Add Campaign",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Address1 data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.countryCode).to.eql(\"EE\");",
+									"    pm.expect(jsonData.bodyTemplate).to.eql(\"Hea pakkumine\");",
+									"    pm.environment.set(\"crudCampaignId\", jsonData.id); ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"countryCode\": \"EE\",\n    \"bodyTemplate\": \"Hea pakkumine\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/campaigns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campaigns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Campaign",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Address1 get data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.countryCode).to.eql(\"EE\");",
+									"    pm.expect(jsonData.bodyTemplate).to.eql(\"Hea pakkumine\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/campaigns/{{crudCampaignId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campaigns",
+								"{{crudCampaignId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Campaign",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": {{crudCampaignId}},\n\t\"countryCode\": \"EE\",\n    \"bodyTemplate\": \"Eriti hea pakkumine\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/campaigns/{{crudCampaignId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campaigns",
+								"{{crudCampaignId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Campaign Updated",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Address1 get data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.countryCode).to.eql(\"EE\");",
+									"    pm.expect(jsonData.bodyTemplate).to.eql(\"Eriti hea pakkumine\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/campaigns/{{crudCampaignId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campaigns",
+								"{{crudCampaignId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Company",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"company data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).to.eql(\"Koristajad AS\");",
+									"    pm.expect(jsonData.domain).to.eql(\"Koristamine\");",
+									"    pm.expect(jsonData.numberOfEmployees).to.eql(50);",
+									"    pm.environment.set(\"crudCompanyId\", jsonData.id); ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Koristajad AS\",\n    \"domain\": \"Koristamine\",\n    \"numberOfEmployees\": 50\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/companies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Company",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"company data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).to.eql(\"Koristajad AS\");",
+									"    pm.expect(jsonData.domain).to.eql(\"Koristamine\");",
+									"    pm.expect(jsonData.numberOfEmployees).to.eql(50);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/companies/{{crudCompanyId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies",
+								"{{crudCompanyId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"email data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.campaignId).to.eql(1);",
+									"    pm.expect(jsonData.companyId).to.eql(1);",
+									"    pm.expect(jsonData.subject).to.eql(\"Koristustoodete pakkumine\");",
+									"    pm.expect(jsonData.body).to.eql(\"50% soodustus kõikidele toodetele\");",
+									"    pm.expect(jsonData.isReply).to.eql(false);",
+									"    pm.environment.set(\"crudEmailId\", jsonData.id); ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": 1,\n    \"companyId\": 1,\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"50% soodustus kõikidele toodetele\",\n    \"isReply\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"email data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.campaignId).to.eql(1);",
+									"    pm.expect(jsonData.companyId).to.eql(1);",
+									"    pm.expect(jsonData.subject).to.eql(\"Koristustoodete pakkumine\");",
+									"    pm.expect(jsonData.body).to.eql(\"50% soodustus kõikidele toodetele\");",
+									"    pm.expect(jsonData.isReply).to.eql(false);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/emails/{{crudEmailId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails",
+								"{{crudEmailId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/emails/{{crudEmailId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails",
+								"{{crudEmailId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Deleted Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/emails/{{crudEmailId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails",
+								"{{crudEmailId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3.a - Campaign CountryCode Two Letters",
+			"item": [
+				{
+					"name": "Add Campaign CountryCode Too Long",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"countryCode\": \"asder\",\n    \"bodyTemplate\": \"Hea pakkumine\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/campaigns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campaigns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Campaign CountryCode Numbers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"countryCode\": \"23\",\n    \"bodyTemplate\": \"Hea pakkumine\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/campaigns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campaigns"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3.b - Company Number Of Employees Negative",
+			"item": [
+				{
+					"name": "Add Company Negative Employees",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Koristajad AS\",\n    \"domain\": \"Koristamine\",\n    \"numberOfEmployees\": -10\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/companies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3.c - Email Subject Empty",
+			"item": [
+				{
+					"name": "Add Campaign",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"emptyCampaignId\", jsonData.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"countryCode\": \"EE\",\n    \"bodyTemplate\": \"Hea pakkumine\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/campaigns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campaigns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Company",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"emptyCompanyId\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Koristajad AS\",\n    \"domain\": \"Koristamine\",\n    \"numberOfEmployees\": 50\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/companies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Email Subject Empty",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": {{emptyCampaignId}},\n    \"companyId\": {{emptyCompanyId}},\n    \"subject\": \"\",\n    \"body\": \"50% soodustus kõikidele toodetele\",\n    \"isReply\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4.a - Email Missing Campaign",
+			"item": [
+				{
+					"name": "Add Company",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"missingCompanyId\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Missing AS\",\n    \"domain\": \"Koristamine\",\n    \"numberOfEmployees\": 50\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/companies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Email Missing Campaign",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": 9999,\n    \"companyId\": {{missingCompanyId}},\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"50% soodustus kõikidele toodetele\",\n    \"isReply\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4.b - Email Missing Company",
+			"item": [
+				{
+					"name": "Add Campaign",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"missingCompanyCampaignId\", jsonData.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"countryCode\": \"EE\",\n    \"bodyTemplate\": \"Missing\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/campaigns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campaigns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Email Missing Company",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": {{missingCompanyCampaignId}},\n    \"companyId\": 9999,\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"50% soodustus kõikidele toodetele\",\n    \"isReply\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5 - Filters",
+			"item": [
+				{
+					"name": "Add Campaign",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"filterCampaignId\", jsonData.id); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"countryCode\": \"EE\",\n    \"bodyTemplate\": \"Hea pakkumine Filter 1\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/campaigns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campaigns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Campaign 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"filterCampaign2Id\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"countryCode\": \"EE\",\n    \"bodyTemplate\": \"Hea pakkumine Filter 2\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/campaigns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campaigns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Company",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"filterCompanyId\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Koristajad AS Filter 1\",\n    \"domain\": \"Koristamine\",\n    \"numberOfEmployees\": 50\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/companies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Company 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"filterCompany2Id\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Puhastusteenused AS Filter 2\",\n    \"domain\": \"Koristamine\",\n    \"numberOfEmployees\": 500\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/companies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"filteremailId\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": {{filterCampaignId}},\n    \"companyId\": {{filterCompanyId}},\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"Soodustus Filter 1\",\n    \"isReply\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Email 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"filteremail2Id\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": {{filterCampaignId}},\n    \"companyId\": {{filterCompany2Id}},\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"Soodustus Filter 2\",\n    \"isReply\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Email 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"filteremail3Id\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": {{filterCampaign2Id}},\n    \"companyId\": {{filterCompanyId}},\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"Soodustus Filter 3\",\n    \"isReply\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"email data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filteremailId\"))).to.be.false;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filteremail2Id\"))).to.be.true;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filteremail3Id\"))).to.be.false;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filteremail3Id\"))).to.be.false;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/emails?minNumberOfEmployees=200",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							],
+							"query": [
+								{
+									"key": "minNumberOfEmployees",
+									"value": "200"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Email 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"email data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filteremailId\"))).to.be.true;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filteremail2Id\"))).to.be.true;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filteremail3Id\"))).to.be.true;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filteremail3Id\"))).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/emails?minNumberOfEmployees=49",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							],
+							"query": [
+								{
+									"key": "minNumberOfEmployees",
+									"value": "49"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "6- Generated Body",
+			"item": [
+				{
+					"name": "Add Campaign",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"bodyCampaignId\", jsonData.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"countryCode\": \"EE\",\n    \"bodyTemplate\": \"Kesklinnas homme 25% soodustus\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/campaigns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campaigns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Company",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"bodyCompanyId\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Tallinna Koristajad AS\",\n    \"domain\": \"Koristamine\",\n    \"numberOfEmployees\": 50\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/companies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Email With Generated Body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"email data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.body).to.eql(\"Hello Tallinna Koristajad AS, Kesklinnas homme 25% soodustus\");",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": {{bodyCampaignId}},\n    \"companyId\": {{bodyCompanyId}},\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"\",\n    \"isReply\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "7 - Campaign Employees",
+			"item": [
+				{
+					"name": "Add Campaign",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"employeesCampaignId\", jsonData.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"countryCode\": \"EE\",\n    \"bodyTemplate\": \"Hea pakkumine Employees\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/campaigns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campaigns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Company",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"employeesCompanyId\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Koristajad AS  Employees 1\",\n    \"domain\": \"Koristamine\",\n    \"numberOfEmployees\": 50\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/companies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Company 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"employeesCompany2Id\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Koristajad AS Employees 2\",\n    \"domain\": \"Koristamine\",\n    \"numberOfEmployees\": 100\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/companies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Company 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"employeesCompany3Id\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Koristajad AS Employees 3\",\n    \"domain\": \"Koristamine\",\n    \"numberOfEmployees\": 80\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/companies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"filteremailId\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": {{employeesCampaignId}},\n    \"companyId\": {{employeesCompanyId}},\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"50% soodustus kõikidele toodetele Employees 1\",\n    \"isReply\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Email 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"filteremailId\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": {{employeesCampaignId}},\n    \"companyId\": {{employeesCompanyId}},\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"50% soodustus kõikidele toodetele Employees 2\",\n    \"isReply\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Email 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"filteremailId\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": {{employeesCampaignId}},\n    \"companyId\": {{employeesCompany3Id}},\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"50% soodustus kõikidele toodetele Employees 3\",\n    \"isReply\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Employee Count",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"email data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.eql(130);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/campaigns/{{employeesCampaignId}}/employees",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campaigns",
+								"{{employeesCampaignId}}",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "L1 - Reply Percentage",
+			"item": [
+				{
+					"name": "Get Reply Percentage 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/companies/500/replyPercentage",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies",
+								"500",
+								"replyPercentage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Campaign",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"percentageCampaignId\", jsonData.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"countryCode\": \"EE\",\n    \"bodyTemplate\": \"Hea pakkumine Percentage 1\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/campaigns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campaigns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Campaign 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"percentageCampaign2Id\", jsonData.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"countryCode\": \"EE\",\n    \"bodyTemplate\": \"Hea pakkumine Percentage 2\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/campaigns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campaigns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Campaign 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"percentageCampaign3Id\", jsonData.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"countryCode\": \"EE\",\n    \"bodyTemplate\": \"Hea pakkumine Percentage 3\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/campaigns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campaigns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Company",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"percentageCompanyId\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Koristajad AS Percentage 1\",\n    \"domain\": \"Koristamine\",\n    \"numberOfEmployees\": 50\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/companies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Company 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"percentageCompany2Id\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Koristajad AS Percentage 2\",\n    \"domain\": \"Koristamine\",\n    \"numberOfEmployees\": 50\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/companies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": {{percentageCampaignId}},\n    \"companyId\": {{percentageCompanyId}},\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"50% soodustus kõikidele toodetele  Percentage 1\",\n    \"isReply\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Reply Percentage 0",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"data is correct\", function () {",
+									"    pm.expect(Math.abs(pm.response.json()-0)).to.be.lt(0.1);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/companies/{{percentageCompanyId}}/replyPercentage",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies",
+								"{{percentageCompanyId}}",
+								"replyPercentage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": {{percentageCampaignId}},\n    \"companyId\": {{percentageCompanyId}},\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"50% soodustus kõikidele toodetele  Percentage 2\",\n    \"isReply\": true\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Company for 100 Percent Test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"percentageCompany3Id\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Koristajad AS Percentage 3\",\n\t\"domain\": \"Testimine\",\n\t\"numberOfEmployees\": 25\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/companies",
+							"host": ["{{url}}"],
+							"path": ["api", "companies"]
+						}
+					}
+				},
+				
+
+				{
+					"name": "Get Reply Percentage 100",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"data is correct\", function () {",
+									"    pm.expect(Math.abs(pm.response.json()-100)).to.be.lt(0.1);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/companies/{{percentageCompanyId}}/replyPercentage",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies",
+								"{{percentageCompanyId}}",
+								"replyPercentage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": {{percentageCampaignId}},\n    \"companyId\": {{percentageCompanyId}},\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"50% soodustus kõikidele toodetele  Percentage 3\",\n    \"isReply\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Reply Percentage 50",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"data is correct\", function () {",
+									"    pm.expect(Math.abs(pm.response.json()-50)).to.be.lt(0.1);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/companies/{{percentageCompanyId}}/replyPercentage",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies",
+								"{{percentageCompanyId}}",
+								"replyPercentage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": {{percentageCampaign2Id}},\n    \"companyId\": {{percentageCompanyId}},\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"50% soodustus kõikidele toodetele Percentage 4\",\n    \"isReply\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Reply Percentage 33",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"data is correct\", function () {",
+									"    var jsonData = pm.response.json()",
+									"    pm.expect(Math.abs(jsonData-33.3)).to.be.lt(0.1);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/companies/{{percentageCompanyId}}/replyPercentage",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies",
+								"{{percentageCompanyId}}",
+								"replyPercentage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": {{percentageCampaignId}},\n    \"companyId\": {{percentageCompany2Id}},\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"50% soodustus kõikidele toodetele Percentage 5\",\n    \"isReply\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Reply Percentage Other Company 0",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"data is correct\", function () {",
+									"    pm.expect(Math.abs(pm.response.json()-0)).to.be.lt(0.1);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/companies/{{percentageCompany2Id}}/replyPercentage",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies",
+								"{{percentageCompany2Id}}",
+								"replyPercentage"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "L2 - No Repeat Emails in Campaign Without Reply",
+			"item": [
+				{
+					"name": "Add Campaign 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"repeatCampaignId\", jsonData.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"countryCode\": \"EE\",\n    \"bodyTemplate\": \"Hea pakkumine Repeat \"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/campaigns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campaigns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Campaign 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"repeatCampaign2Id\", jsonData.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"countryCode\": \"EE\",\n    \"bodyTemplate\": \"Hea pakkumine Repeat 2\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/campaigns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campaigns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Company 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"repeatCompanyId\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Koristajad AS Repeat 1\",\n    \"domain\": \"Koristamine\",\n    \"numberOfEmployees\": 50\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/companies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Company 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"repeatCompany2Id\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Koristajad AS Repeat 2\",\n    \"domain\": \"Koristamine\",\n    \"numberOfEmployees\": 50\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/companies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Email 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": {{repeatCampaignId}},\n    \"companyId\": {{repeatCompanyId}},\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"50% soodustus kõikidele toodetele Repeat 1\",\n    \"isReply\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Repeat Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": {{repeatCampaignId}},\n    \"companyId\": {{repeatCompanyId}},\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"50% soodustus kõikidele toodetele Repeat 2\",\n    \"isReply\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Email Different Company",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"crudEmailId\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": {{repeatCampaignId}},\n    \"companyId\": {{repeatCompany2Id}},\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"50% soodustus kõikidele toodetele Repeat 3\",\n    \"isReply\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Email Different Campaign",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"crudEmailId\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": {{repeatCampaign2Id}},\n    \"companyId\": {{repeatCompanyId}},\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"50% soodustus kõikidele toodetele Repeat 4\",\n    \"isReply\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Email Reply",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"crudEmailId\", jsonData.id); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": {{repeatCampaignId}},\n    \"companyId\": {{repeatCompanyId}},\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"50% soodustus kõikidele toodetele Repeat 5\",\n    \"isReply\": true\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				},
+							{
+					"name": "Add Email 2",
+					"event": [
+						{
+							 "listen": "test",
+            "script": {
+                "exec": [
+                    "pm.test(\"Status code is 201\", function () {",
+                    "    pm.response.to.have.status(201);",
+                    "});",
+                    "",
+                    "// Näita selgelt viga, kui status pole 201",
+                    "if (pm.response.code !== 201) {",
+                    "    console.log(pm.response.json());",
+                    "}"
+                ],
+                "type": "text/javascript"
+            }
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campaignId\": {{repeatCampaignId}},\n    \"companyId\": {{repeatCompanyId}},\n    \"subject\": \"Koristustoodete pakkumine\",\n    \"body\": \"50% soodustus kõikidele toodetele Repeat 6\",\n    \"isReply\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/emails",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"emails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
