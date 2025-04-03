@@ -86,7 +86,7 @@ namespace ITB2203Application.Controllers
         public ActionResult<int> GetCampaignEmployees(int id)
         {
             var campaign = _context.Campaigns
-                .Include(c => c.Emails)  // Laadime kampaania ja tema seotud e-kirjad
+                .Include(c => c.Emails)
                 .FirstOrDefault(c => c.Id == id);
 
             if (campaign == null)
